@@ -24,15 +24,15 @@ public class MatrixMultiplication
    
    // Multiplication of two square matrices
    // The arguments are not checked for validity
-   public static double[][] mult(double[][] A, double[][] B, int SIZE)
+   public static double[][] mult(double[][] A, double[][] B, int size)
    {
-      double[][] C = new double[SIZE][SIZE];
+      double[][] C = new double[size][size];
 
-      for (int i = 0; i < SIZE; i++)
+      for (int i = 0; i < size; i++)
       {
-         for (int j = 0; j < SIZE; j++)
+         for (int j = 0; j < size; j++)
          {
-            for (int k = 0; k < SIZE; k++)
+            for (int k = 0; k < size; k++)
             {
                C[i][j] += A[i][k] * B[k][j];
             }

@@ -1,66 +1,48 @@
 package ch07_streams_collection;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.BiConsumer;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.stream.Collector;
-import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 
 public class Example_05
 {
-   static class DistinctCollector<E> implements Collector<E, Set<E>, List<E>>
+
+   public static void main(String[] args)
    {
-
-      @Override
-      public Supplier<Set<E>> supplier()
+      // Create a list with random strings
+      List<String> strings = new ArrayList<>();
+      for(int i=0; i < 10_000; i++)
       {
-         return () -> new HashSet<>();
+        strings.add( getRandomString(10) );
       }
+      
+      
+      // Using a downstream collector to count the strings
+      Map<String, Long> stringMapCount = strings.stream().parallel()
+                    .collect( Collectors.groupingBy( str -> str.substring(0, 1), 
+                              Collectors.counting() ) );
 
-      @Override
-      public BiConsumer<Set<E>, E> accumulator()
+      for( Entry<String, Long> entry : stringMapCount.entrySet() )
       {
-         return (set, element) -> set.add(element);
-      }
-
-      @Override
-      public BinaryOperator<Set<E>> combiner()
-      {
-         return (setLeft, setRight) -> {
-            setLeft.addAll(setRight);
-            return setLeft;
-         };
-      }
-
-      @Override
-      public Function<Set<E>, List<E>> finisher()
-      {
-         return set -> new ArrayList<>(set);
-      }
-
-      @Override
-      public Set<Characteristics> characteristics()
-      {
-         return Set.of(Characteristics.UNORDERED);
+         System.out.println( entry.getKey() + " -> " + entry.getValue() );
       }
    }
    
-   public static void main(String[] args)
-   {
-      List<Integer> distinctRandomList =
-            IntStream.range(0, 100)
-                     .parallel()
-                     .map( i -> ThreadLocalRandom.current().nextInt(1000))
-                     .mapToObj( i -> Integer.valueOf(i) )
-                     .collect( new DistinctCollector<>() );
+   private static final char[] ALPHABET = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 
-            
-        System.out.println("Count " + distinctRandomList.size() );
+   public static String getRandomString(int len)
+   {
+     StringBuilder strBuilder = new StringBuilder();
+     for (int i = 0; i < len; i++)
+     {
+       int idx = ThreadLocalRandom.current().nextInt(ALPHABET.length);
+       strBuilder.append(ALPHABET[idx]);
+     }
+
+     return strBuilder.toString();
    }
+
 }
