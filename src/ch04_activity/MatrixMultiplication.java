@@ -8,15 +8,14 @@ public class MatrixMultiplication
    {
       final int SIZE = 700;
       
-      
       double[][] A = Util.getRandomMatrix(SIZE, SIZE);
       double[][] B = Util.getRandomMatrix(SIZE, SIZE);
       
-      long start = System.currentTimeMillis();
+      long startTime = System.currentTimeMillis();
       double[][] C = mult(A,B,SIZE);
-      long end = System.currentTimeMillis();
+      long endTime = System.currentTimeMillis();
       
-      System.out.println("Duration : " + (end - start) + "[ms]");
+      System.out.println("Elapsed time : " + (endTime - startTime) + "[ms]");
       
       System.out.println("The first element C[0][0] = " + C[0][0] );
       System.out.println("done");
