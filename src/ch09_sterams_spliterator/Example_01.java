@@ -23,7 +23,7 @@ public class Example_01
       Map<Integer, Long> map = Arrays.stream(words) //.parallel()
                                              .map( String::trim )
                                              .map( str -> str.replaceAll("[\",!?.';:]", "")) 
-                                             .filter( str -> str.matches("[A-Za-z']+") )
+                                             .filter( str -> str.matches("[A-Za-z]+") )
                                              .collect( Collectors.groupingBy( String::length, 
                                                        Collectors.counting() ) );
       long end = System.currentTimeMillis();

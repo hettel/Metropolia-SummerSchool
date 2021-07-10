@@ -46,12 +46,12 @@ public class Util
       }
    }
    
-   private static byte[] toByteArray(int value)
+   public static byte[] toByteArray(int value)
    {
       return ByteBuffer.allocate(4).putInt(value).array();
    }
 
-   private static int fromByteArray(byte[] bytes)
+   public static int fromByteArray(byte[] bytes)
    {
       return ByteBuffer.wrap(bytes).getInt();
    }

@@ -14,10 +14,6 @@ public class FindLongestWord
       Path path = Paths.get( "Homer-Odyssey-UTF8-Coding.txt");
       String content = Files.readString(path, Charset.forName("UTF8"));
       String words[] = content.split("\\s+");
-      
-      long count = content.chars().filter( Character::isLetter ).count();
-
-      System.out.println("Number of characters " + count );
       System.out.println("Number of words " + words.length );
    }
 

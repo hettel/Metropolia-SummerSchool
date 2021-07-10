@@ -122,7 +122,7 @@ public class Example_02
                    .flatMap( array -> Arrays.stream(array))
                    .map( String::trim )
                    .map( str -> str.replaceAll("[\",!?.';:]", "")) 
-                   .filter( str -> str.matches("[A-Za-z']+") )
+                   .filter( str -> str.matches("[A-Za-z]+") )
                    .collect( Collectors.groupingBy( String::length,
                              Collectors.counting()) );
       
