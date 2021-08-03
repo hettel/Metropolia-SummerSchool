@@ -7,20 +7,20 @@ public class MatrixMultiplication
    public static void main(String[] args)
    {
       final int SIZE = 700;
-      
+
       double[][] A = Util.getRandomMatrix(SIZE, SIZE);
       double[][] B = Util.getRandomMatrix(SIZE, SIZE);
-      
+
+
       long startTime = System.currentTimeMillis();
-      double[][] C = mult(A,B,SIZE);
+      double[][] C = mult(A, B, SIZE);
       long endTime = System.currentTimeMillis();
-      
+
       System.out.println("Elapsed time : " + (endTime - startTime) + "[ms]");
-      
-      System.out.println("The first element C[0][0] = " + C[0][0] );
+      System.out.println("The first element C[0][0] = " + C[0][0]);
       System.out.println("done");
    }
-   
+
    // Multiplication of two square matrices
    // The arguments are not checked for validity
    public static double[][] mult(double[][] A, double[][] B, int size)
