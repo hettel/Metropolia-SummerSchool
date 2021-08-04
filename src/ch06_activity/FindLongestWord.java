@@ -19,7 +19,7 @@ public class FindLongestWord
       String longestWord = words[0];
       for (int i = 1; i < words.length; i++)
       {
-         if (words[i].matches("[a-zA-Z'\\-´`]*"))
+         if (words[i].matches("[a-zA-Z'\\-´]*"))
          {
             if (words[i].length() > longestWord.length())
             {

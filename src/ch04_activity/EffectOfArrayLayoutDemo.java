@@ -7,7 +7,7 @@ public class EffectOfArrayLayoutDemo
 {
    public static void main(String[] args)
    {
-      final int SIZE = 15_000;
+      final int SIZE = 10_000;
       double[][] array = new double[SIZE][SIZE]; // 225.000.000 slots
       long start, end;
 

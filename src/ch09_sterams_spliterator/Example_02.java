@@ -118,7 +118,7 @@ public class Example_02
       WordSpliterator spliterator = new WordSpliterator(content); //, content.length()/48);
       
       Map<Integer, Long> map = 
-      StreamSupport.stream(spliterator, true).parallel()
+      StreamSupport.stream(spliterator, true)
                    .flatMap( array -> Arrays.stream(array))
                    .map( String::trim )
                    .map( str -> str.replaceAll("[\",!?.';:]", "")) 
