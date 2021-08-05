@@ -19,6 +19,8 @@ public class Example_04
 
    public static void main(String[] args) throws Exception
    {
+      System.out.println("start");
+      
       int parallel = Runtime.getRuntime().availableProcessors();
       int bitLen = 4048;
 
@@ -43,6 +45,7 @@ public class Example_04
       }
 
       executor.shutdownNow();
+      System.out.println("done");
 
    }
 

@@ -25,13 +25,13 @@ public class Example_01
                  .filter( bInt -> bInt.isProbablePrime(1000) )
                  .count();
         
-        System.out.printf("From %d to %d : %d \n", start, end,count );
+        System.out.printf("From %d to %d : %d -> %s \n", start, end,count, Thread.currentThread().getName()  );
       }
    }
    
    public static void main(String[] args)
    {
-      ExecutorService executor = Executors.newFixedThreadPool(4);
+      ExecutorService executor = Executors.newCachedThreadPool();
       
       // Partition the work
       Task task1 = new Task(1_000_000, 1_250_000);
@@ -43,9 +43,17 @@ public class Example_01
       executor.execute(task2);
       executor.execute(task3);
       executor.execute(task4);
+      executor.execute(task1);
+      executor.execute(task2);
+      executor.execute(task3);
+      executor.execute(task4);
+      executor.execute(task1);
+      executor.execute(task2);
+      executor.execute(task3);
+      executor.execute(task4);
       
       // Running tasks are not aborted
-      executor.shutdown();
+      //executor.shutdown();
       System.out.println("main done");
    }
 }
