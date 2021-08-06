@@ -54,7 +54,7 @@ public class CBCBlockCryptography
       for (Integer item : inputData)
       {
          // XOR operation
-         int value = (salt ^ item);
+         int value = (salt ^ item); //xor operation
 
          // encrypt value using a simple Caesar cipher (shift 42)
          value = (value + CaesarShift);
