@@ -2,7 +2,7 @@ package exam.exercise2;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class RecursiveSearch
+public class RecursiveCount
 {
 
    public static void main(String[] args)

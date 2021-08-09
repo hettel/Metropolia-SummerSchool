@@ -27,15 +27,15 @@ public class Example_02
       {
          if (end - start < THRESHOLD)
          {
-            int maxIndex = start;
+            int maxValue = array[start];
             for (int i = start + 1; i < end; i++)
             {
-               if (array[i] > array[maxIndex])
+               if (array[i] > maxValue)
                {
-                  maxIndex = i;
+                  maxValue = array[i];
                }
             }
-            return array[maxIndex];
+            return maxValue;
          }
          else
          {
@@ -48,20 +48,19 @@ public class Example_02
          }
       }
    }
-   
+
    public static void main(String[] args)
    {
-     int[] array = new int[1_000_000];
-     Arrays.parallelSetAll(array, 
-                i -> ThreadLocalRandom.current().nextInt(10_000_000));
-     
-     ForkJoinPool executor = new ForkJoinPool(8);
-     Task root = new Task(array, 0, array.length);
-     executor.execute(root);
-     
-     // or using the build-in pool
-     // ForkJoinPool.commonPool().execute(root);
-     
-     System.out.println("Max " +  root.join() );
+      int[] array = new int[1_000_000];
+      Arrays.parallelSetAll(array, i -> ThreadLocalRandom.current().nextInt(50_000_000));
+
+      ForkJoinPool executor = new ForkJoinPool(8);
+      Task root = new Task(array, 0, array.length);
+      executor.execute(root);
+
+      // or using the build-in pool
+      // ForkJoinPool.commonPool().execute(root);
+
+      System.out.println("Max " + root.join());
    }
 }

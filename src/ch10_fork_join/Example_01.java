@@ -1,5 +1,6 @@
 package ch10_fork_join;
 
+import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Example_01
@@ -9,13 +10,13 @@ public class Example_01
    public static int max(int[] array, int start, int end) {   
      // work phase
      if( end - start < THRESHOLD ) {
-        int maxIndex = start;
+        int maxValue = array[start];
         for(int i=start+1; i<end; i++) {
-          if( array[i] > array[maxIndex] ) {
-            maxIndex = i;
+          if( array[i] > maxValue ) {
+             maxValue = array[i];
           }
         }
-        return array[maxIndex];
+        return maxValue;
      }
      else {
        // split phase
@@ -30,7 +31,8 @@ public class Example_01
    
    public static void main(String[] args)
    {
-      int[] array = ThreadLocalRandom.current().ints(1_000).toArray();
+      int[] array = new int[1_000_000];
+      Arrays.parallelSetAll(array, i -> ThreadLocalRandom.current().nextInt(50_000_000));
       
       int max = max(array, 0, array.length);
       System.out.println("Max value : " + max );
